@@ -7,12 +7,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/crossplane/crossplane-runtime/pkg/meta"
 	v1 "github.com/crossplane/crossplane/apis/apiextensions/v1"
 	"github.com/ghodss/yaml"
 	"github.com/pkg/errors"
 	extv1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/utils/pointer"
 )
 
@@ -398,9 +396,6 @@ func ForCompositeResource(xrd *v1.CompositeResourceDefinition) (*extv1.CustomRes
 
 	crd.SetName(xrd.GetName())
 	crd.SetLabels(xrd.GetLabels())
-	crd.SetOwnerReferences([]metav1.OwnerReference{meta.AsController(
-		meta.TypedReferenceTo(xrd, v1.CompositeResourceDefinitionGroupVersionKind),
-	)})
 
 	crd.Spec.Names.Categories = append(crd.Spec.Names.Categories, CategoryComposite)
 
@@ -470,9 +465,6 @@ func ForCompositeResourceClaim(xrd *v1.CompositeResourceDefinition) (*extv1.Cust
 
 	crd.SetName(xrd.Spec.ClaimNames.Plural + "." + xrd.Spec.Group)
 	crd.SetLabels(xrd.GetLabels())
-	crd.SetOwnerReferences([]metav1.OwnerReference{meta.AsController(
-		meta.TypedReferenceTo(xrd, v1.CompositeResourceDefinitionGroupVersionKind),
-	)})
 
 	crd.Spec.Names.Categories = append(crd.Spec.Names.Categories, CategoryClaim)
 
