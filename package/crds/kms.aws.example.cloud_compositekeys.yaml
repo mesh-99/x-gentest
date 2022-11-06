@@ -3,13 +3,6 @@ kind: CustomResourceDefinition
 metadata:
   creationTimestamp: null
   name: compositekeys.kms.aws.example.cloud
-  ownerReferences:
-  - apiVersion: apiextensions.crossplane.io/v1
-    blockOwnerDeletion: true
-    controller: true
-    kind: CompositeResourceDefinition
-    name: compositekeys.kms.aws.example.cloud
-    uid: ""
 spec:
   group: kms.aws.example.cloud
   names:
