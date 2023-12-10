@@ -587,6 +587,8 @@ func generateCrdForPathsOfType(paths []string, oututFolder string, generator fun
 	for _, m := range paths {
 		fmt.Println(m)
 
+		fmt.Printf("xrd PATH: %s\n", m)
+
 		xrd, _ := loadXrd(m)
 
 		crd, err := generator(xrd)
