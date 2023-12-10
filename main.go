@@ -601,6 +601,7 @@ func generateCrdForPathsOfType(paths []string, oututFolder string, generator fun
 		}
 
 		output := filepath.Join(oututFolder, "/package/crds/", fmt.Sprintf("%s_%s.yaml", crd.Spec.Group, crd.Spec.Names.Plural))
+		fmt.Printf("Output path: %s\n", output)
 
 		err = ioutil.WriteFile(output, y, 0644)
 		if err != nil {
