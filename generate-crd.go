@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
-	"os/exec"
+
 
 	v1 "github.com/crossplane/crossplane/apis/apiextensions/v1"
 	"github.com/ghodss/yaml"
@@ -652,6 +652,17 @@ func processXRDFiles(files []string, outputFolder string) error {
         }
     }
     return nil
+}
+
+func generateCrdsForPattern(pattern string, cwd string) error {
+    files, err := findPathsForPattern(pattern, cwd)
+    if err != nil {
+        return err
+    }
+
+    err = processXRDFiles(files, cwd)
+
+    return err
 }
 
 
